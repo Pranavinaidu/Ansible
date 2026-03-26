@@ -1,15 +1,15 @@
-data "aws_ami" "my_ami" {
-  most_recent = true
-  name_regex  = "^Ansible_"
-  owners      = ["721834156908"]
-}
+# data "aws_ami" "my_ami" {
+#   most_recent = true
+#   name_regex  = "^Ansible_"
+#   owners      = ["721834156908"]
+# }
 
 
 resource "aws_instance" "webservers" {
   count                       = local.new_environment == "production" ? 3 : 3
   #count                       = 6
-  ami                         = data.aws_ami.my_ami.id
-  #ami = "ami-0149b2da6ceec4bb0"
+  #ami                         = data.aws_ami.my_ami.id
+  ami = "ami-0ec10929233384c7f"
   instance_type               = lookup(var.instance_type, local.new_environment)
   key_name                    = var.key_name
   subnet_id                   = element(aws_subnet.public-subnets.*.id, count.index)
