@@ -1,6 +1,6 @@
 data "aws_ami" "my_ami" {
   most_recent = true
-  name_regex  = "^Ansible"
+  name_regex  = "^Ansible_"
   owners      = ["721834156908"]
 }
 
