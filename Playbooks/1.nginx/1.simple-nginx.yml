@@ -37,19 +37,15 @@
   become_user: root
   tags: basetools
   tasks:
-  - name: update apt update_cache
-    apt:
-      update_cache: yes
+  - name: Perform apt update
+    shell: apt update
   - name: Install Base Tools 1
     apt: name={{ item }} state=present
     with_items:
       - unzip
       - net-tools
-      - stress
     when: ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] == '24.04'
   - name: Install Base Tools 2
-    apt: 
-      name:  "{{ item }}"
-      state: present
-    with_items: [ jq, tree ]
+    apt: name={{ item }} state=present
+    with_items: [ jq, stress, tree ]
     when: ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] == '24.04'
