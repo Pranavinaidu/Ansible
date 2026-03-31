@@ -40,11 +40,11 @@
   - name: Perform apt update
     shell: apt update
   - name: Install Base Tools 1
-    apt: name={{ item }} state=present
-    with_items:
-      - unzip
-      - net-tools
-      - stress
+    apt: 
+      name:
+        - unzip
+        - net-tools
+        - stress
     update_cache: yes
     cache_valid_time: 0
     when: ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] == '24.04'
