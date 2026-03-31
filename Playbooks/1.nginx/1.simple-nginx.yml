@@ -38,13 +38,15 @@
   tags: basetools
   tasks:
   - name: Perform apt update
-    shell: apt update
+    shell: apt-get update
   - name: Install Base Tools 1
     apt: name={{ item }} state=present
     with_items:
       - unzip
       - certbot
       - net-tools
+    when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '22.04'
   - name: Install Base Tools 2
     apt: name={{ item }} state=present
     with_items: [ jq, stress, tree ]
+    when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '22.04'

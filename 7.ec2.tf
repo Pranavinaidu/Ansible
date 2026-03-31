@@ -9,7 +9,7 @@ resource "aws_instance" "webservers" {
   count                       = local.new_environment == "production" ? 3 : 3
   #count                       = 6
   #ami                         = data.aws_ami.my_ami.id
-  ami = "ami-0ec10929233384c7f"
+  ami = "ami-04680790a315cd58d"
   instance_type               = lookup(var.instance_type, local.new_environment)
   key_name                    = var.key_name
   subnet_id                   = element(aws_subnet.public-subnets.*.id, count.index)
