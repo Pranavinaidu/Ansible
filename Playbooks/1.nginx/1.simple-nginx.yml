@@ -38,7 +38,7 @@
   tags: basetools
   tasks:
   - name: Perform apt update
-    shell: apt-get update
+    shell: apt update
   - name: Install Base Tools 1
     apt: name={{ item }} state=present
     with_items:
