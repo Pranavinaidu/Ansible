@@ -24,6 +24,8 @@
     shell: nginx -v
     register: nginx_output
     ignore_errors: yes
+    tags:
+     - ngnix_check
 
   - name: Perform apt update & Install basic packages
     shell: apt update && apt install -y unzip jq net-tools stress 
